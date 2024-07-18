@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Header from "./Header";
 import { HOME_IMG_URL } from "../utils/constants";
 const Login = () => {
@@ -34,11 +34,14 @@ const handleClick = () => {
             type="text"
             placeholder="Email Address"
           ></input>
-          <input
+          {
+            !signUpLabel &&
+          (<input
             className="w-full p-4 my-2 bg-gray-700 rounded-sm"
             type="text"
             placeholder="Full Name"
           ></input>
+)}
           <input
             className="w-full p-4 my-2 bg-gray-700 rounded-sm"
             type="password"
