@@ -3,7 +3,7 @@ import Header from "./Header";
 import { HOME_IMG_URL } from "../utils/constants";
 import { formValidate } from "../utils/formValidate";
 import {auth} from "../utils/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
   const [btn, setBtn] = useState("Sign In");
   const [signInForm, setsignInForm] = useState(true);
@@ -19,8 +19,7 @@ const Login = () => {
    setErrMsg(formMsg);
    if(errMsg!==null) return ;
 
-   if(signInForm) return ;
-
+   if(!signInForm) {
    createUserWithEmailAndPassword(auth,eml,pw)
    .then((userCredential)=>{
     const user = userCredential.user;
@@ -29,8 +28,18 @@ const Login = () => {
    .catch((error)=>{
     setErrMsg(error.message);
    })
-  };
-
+  }
+else{
+  signInWithEmailAndPassword(auth,eml,pw)
+  .then((userCredential)=>{
+    const user = userCredential.user;
+    console.log(user);
+  })
+  .catch((error)=>{
+    setErrMsg(error.message);
+  })
+}
+  }
   const handleClick = () => {
     return btn === "Sign In"
       ? (() => {
