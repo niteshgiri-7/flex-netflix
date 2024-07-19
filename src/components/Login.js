@@ -2,9 +2,11 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { HOME_IMG_URL } from "../utils/constants";
 import { formValidate } from "../utils/formValidate";
+import {auth} from "../utils/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
   const [btn, setBtn] = useState("Sign In");
-  const [signUpLabel, setSignUpLabel] = useState(true);
+  const [signInForm, setsignInForm] = useState(true);
   const [errMsg,setErrMsg]=useState(null);
 
   const email = useRef(null);
@@ -15,18 +17,30 @@ const Login = () => {
    const pw = password.current.value;
    const formMsg = formValidate(eml,pw);
    setErrMsg(formMsg);
+   if(errMsg!==null) return ;
+
+   if(signInForm) return ;
+
+   createUserWithEmailAndPassword(auth,eml,pw)
+   .then((userCredential)=>{
+    const user = userCredential.user;
+    console.log(user);
+   })
+   .catch((error)=>{
+    setErrMsg(error);
+   })
   };
 
   const handleClick = () => {
     return btn === "Sign In"
       ? (() => {
           setBtn("Sign Up");
-          setSignUpLabel(false);
+          setsignInForm(false);
           return null;
         })()
       : (() => {
           setBtn("Sign In");
-          setSignUpLabel(true);
+          setsignInForm(true);
           return null;
         })();
   };
@@ -51,7 +65,7 @@ const Login = () => {
             placeholder="Email Address"
             ref={email}
           ></input>
-          {!signUpLabel && (
+          {!signInForm && (
             <input
               className="w-full p-4 my-2 bg-gray-700 rounded-sm"
               type="text"
@@ -68,12 +82,12 @@ const Login = () => {
           <button className="w-full py-4 my-2 rounded-md bg-red-600 cursor-pointer" onClick={()=>handleMainBtn()}>
             {btn}
           </button>
-          {signUpLabel && (
+          {signInForm && (
             <p className="py-4">
               New to netflix?{" "}
               <span
                 onClick={() => handleClick()}
-                className="border-solid  border-b border-white cursor-pointer"
+                className="border-solid  border-b-4 border-white cursor-pointer"
               >
                 Sign Up
               </span>{" "}
