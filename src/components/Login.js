@@ -27,7 +27,7 @@ const Login = () => {
     console.log(user);
    })
    .catch((error)=>{
-    setErrMsg(error);
+    setErrMsg(error.message);
    })
   };
 
