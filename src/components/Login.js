@@ -2,44 +2,58 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { HOME_IMG_URL } from "../utils/constants";
 import { formValidate } from "../utils/formValidate";
-import {auth} from "../utils/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [btn, setBtn] = useState("Sign In");
   const [signInForm, setsignInForm] = useState(true);
-  const [errMsg,setErrMsg]=useState(null);
+  const [errMsg, setErrMsg] = useState(null);
+  const navigate = useNavigate();
 
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
   const handleMainBtn = () => {
-   const eml = email.current.value;
-   const pw = password.current.value;
-   const formMsg = formValidate(eml,pw);
-   setErrMsg(formMsg);
-   if(errMsg!==null) return ;
+    const eml = email.current.value;
+    const pw = password.current.value;
+    const nm = name.current ? name.current.value : null;
+    const formMsg = formValidate(eml, pw, nm,signInForm);
+    console.log(formMsg);
+    setErrMsg(formMsg);
+    if (formMsg !== null) return;
 
-   if(!signInForm) {
-   createUserWithEmailAndPassword(auth,eml,pw)
-   .then((userCredential)=>{
-    const user = userCredential.user;
-    console.log(user);
-   })
-   .catch((error)=>{
-    setErrMsg(error.message);
-   })
-  }
-else{
-  signInWithEmailAndPassword(auth,eml,pw)
-  .then((userCredential)=>{
-    const user = userCredential.user;
-    console.log(user);
-  })
-  .catch((error)=>{
-    setErrMsg(error.message);
-  })
-}
-  }
+    if (!signInForm) {
+      createUserWithEmailAndPassword(auth, eml, pw)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          updateProfile(user, {
+            displayName: nm,
+          }).then(() => {
+            navigate("/browse");
+          });
+        })
+        .catch((error) => {
+          setErrMsg(error.message);
+        });
+    } else {
+      signInWithEmailAndPassword(auth, eml, pw)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+        })
+        .catch((error) => {
+          setErrMsg(error.message);
+        });
+    }
+  };
   const handleClick = () => {
     return btn === "Sign In"
       ? (() => {
@@ -79,6 +93,7 @@ else{
               className="w-full p-4 my-2 bg-gray-700 rounded-sm"
               type="text"
               placeholder="Full Name"
+              ref={name}
             ></input>
           )}
           <input
@@ -88,7 +103,10 @@ else{
             ref={password}
           ></input>
           <p className="text-red-600 text-lg py-4 font-bold">{errMsg}</p>
-          <button className="w-full py-4 my-2 rounded-md bg-red-600 cursor-pointer" onClick={()=>handleMainBtn()}>
+          <button
+            className="w-full py-4 my-2 rounded-md bg-red-600 cursor-pointer"
+            onClick={() => handleMainBtn()}
+          >
             {btn}
           </button>
           {signInForm && (
