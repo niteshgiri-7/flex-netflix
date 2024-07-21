@@ -4,7 +4,7 @@ const Browse = () => {
   return (
     <div>
       <Header/>
-    <h1>this is browse page</h1>
+
     </div>
   )
 }

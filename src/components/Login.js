@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [btn, setBtn] = useState("Sign In");
   const [signInForm, setsignInForm] = useState(true);
@@ -23,7 +24,7 @@ const Login = () => {
     const eml = email.current.value;
     const pw = password.current.value;
     const nm = name.current ? name.current.value : null;
-    const formMsg = formValidate(eml, pw, nm,signInForm);
+    const formMsg = formValidate(eml, pw, nm, signInForm);
     console.log(formMsg);
     setErrMsg(formMsg);
     if (formMsg !== null) return;
@@ -54,7 +55,7 @@ const Login = () => {
         });
     }
   };
-  const handleClick = () => {
+  const handleSignUPLabel = () => {
     return btn === "Sign In"
       ? (() => {
           setBtn("Sign Up");
@@ -83,7 +84,7 @@ const Login = () => {
         <div className="font-bold text-white">
           <h1 className="text-4xl py-4 my-2">{btn}</h1>
           <input
-            className="w-full p-4 my-2 bg-gray-700 rounded-sm"
+            className="w-full p-4 my-2 bg-gray-700 rounded-sm focus:bg-gray-700"
             type="text"
             placeholder="Email Address"
             ref={email}
@@ -113,7 +114,7 @@ const Login = () => {
             <p className="py-4">
               New to netflix?{" "}
               <span
-                onClick={() => handleClick()}
+                onClick={() => handleSignUPLabel()}
                 className="border-solid  border-b-4 border-white cursor-pointer"
               >
                 Sign Up
