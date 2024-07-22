@@ -33,7 +33,6 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, eml, pw)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
           updateProfile(user, {
             displayName: nm,
           }).then(() => {
