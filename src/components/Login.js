@@ -8,13 +8,11 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [btn, setBtn] = useState("Sign In");
   const [signInForm, setsignInForm] = useState(true);
   const [errMsg, setErrMsg] = useState(null);
-  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -36,7 +34,6 @@ const Login = () => {
           updateProfile(user, {
             displayName: nm,
           }).then(() => {
-            navigate("/browse");
           });
         })
         .catch((error) => {
@@ -47,7 +44,6 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           setErrMsg(error.message);

@@ -11,7 +11,7 @@ const user = useSelector((store)=>store.user);
           navigate("/");
           return;
         }
-      },[])
+      },)
       
 }
 
