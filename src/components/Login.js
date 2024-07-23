@@ -23,7 +23,6 @@ const Login = () => {
     const pw = password.current.value;
     const nm = name.current ? name.current.value : null;
     const formMsg = formValidate(eml, pw, nm, signInForm);
-    console.log(formMsg);
     setErrMsg(formMsg);
     if (formMsg !== null) return;
 
@@ -33,8 +32,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: nm,
-          }).then(() => {
-          });
+          }).then(() => {});
         })
         .catch((error) => {
           setErrMsg(error.message);
@@ -57,7 +55,7 @@ const Login = () => {
           setsignInForm(false);
           return null;
         })()
-      : (() => {
+      :(() => {
           setBtn("Sign In");
           setsignInForm(true);
           return null;
@@ -74,7 +72,7 @@ const Login = () => {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="p-12 bg-black rounded-lg bg-opacity-80 absolute w-3/12 mx-auto my-48 right-0 left-0 "
+        className="p-12 bg-black rounded-lg bg-opacity-80  w-3/12 mx-auto my-48 absolute right-0 left-0 "
       >
         <div className="font-bold text-white">
           <h1 className="text-4xl py-4 my-2">{btn}</h1>

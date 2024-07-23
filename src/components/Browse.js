@@ -1,13 +1,16 @@
-import Header from './Header';
-import IfNotUser from '../utils/useIfNotUser';
+import Header from "./Header";
+import useNowPlayingMovies from "../Hooks/useNowPlayingMovies";
+import MainContainer from "./MainContainer";
+
 const Browse = () => {
-  IfNotUser();//redirects to login Page
+  useNowPlayingMovies();
+
   return (
     <div>
-      <Header/>
-
+      <Header />
+      <MainContainer />
     </div>
-  )
-}
+  );
+};
 
 export default Browse;
