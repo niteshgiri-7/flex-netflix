@@ -10,7 +10,7 @@ const MainContainer = () => {
     <div>
       {movies ? (
         <>
-          <VideoTitle title={mainmovie.title} overview = {mainmovie.overview} />
+          <VideoTitle title={mainmovie.title} overview = {mainmovie.overview} />  
           <VideoBackground />
         </>
       ) : (
