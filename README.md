@@ -7,3 +7,8 @@
 - useRef to extract emls and pw
 - firebase setup
 - redux store setUp 
+- tmdb coming in 
+- getdata from tmdb
+- filter it
+- create movieSlice
+- main container
