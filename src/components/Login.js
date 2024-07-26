@@ -63,7 +63,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <Header />
       <div className="absolute">
         <img src={HOME_IMG_URL} alt="homeImage" />

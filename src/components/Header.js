@@ -42,7 +42,7 @@ const Header = () => {
       });
   };
   return (
-    <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-10 w-screen  flex justify-between">
+    <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-10 w-full  flex justify-between">
       <img className="w-44 z-50" src={LOGO_URL} alt="logo" />
       {user && <button className="bg-red-600 rounded-md m-2 p-2 text-white font-bold hover:bg-red-700"onClick={() => handleSignout()}>Log Out</button>}
     </div>

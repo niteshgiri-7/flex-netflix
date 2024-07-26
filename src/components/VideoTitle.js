@@ -1,7 +1,7 @@
 import React from "react";
 
 const VideoTitle = ({title,overview}) => {
-  return <div className="h-screen pt-[18%] px-24 absolute text-white bg-gradient-to-r from-black ">
+  return <div className="h-screen pt-[20%] px-24 absolute text-white bg-gradient-to-r from-black no-scrollbar">
     <h1 className="text-6xl font-bold overflow-hidden">
     {title}
     </h1>
