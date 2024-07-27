@@ -64,8 +64,8 @@ const Login = () => {
   return (
     <div className="">
       <Header />
-      <div className="absolute">
-        <img src={HOME_IMG_URL} alt="homeImage" />
+      <div className="">
+        <img className="w-full h-full absolute"src={HOME_IMG_URL} alt="homeImage" />
       </div>
       <form
         onSubmit={(e) => {

@@ -5,46 +5,64 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { onAuthStateChanged } from 'firebase/auth';
-import { addUser, removeUser } from '../utils/userSlice';
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { toggleShowGpt } from "../utils/gptSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
+  const showGpt = useSelector((store) => store.gpt.showGpt);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    
-  const unsubscribe =  onAuthStateChanged(auth,(user)=>{
-      if(user){
-        const {uid,email,displayName} = user;
-        dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
         navigate("/browse");
-      }
-      else{
+      } else {
         dispatch(removeUser());
         navigate("/");
       }
     });
-    return ()=> unsubscribe(); //unsubscribes (onAuthSateChanged callback) when header unmounts
-},[])
-
+    return () => unsubscribe(); //unsubscribes (onAuthSateChanged callback) when header unmounts
+  }, []);
 
   const handleSignout = () => {
-    
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
+        dispatch(toggleShowGpt());
         navigate("/");
       })
       .catch(() => {
         navigate("/error");
       });
   };
+
+  const handleGptClick = () => {
+    dispatch(toggleShowGpt());
+  };
   return (
     <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-10 w-full  flex justify-between">
       <img className="w-44 z-50" src={LOGO_URL} alt="logo" />
-      {user && <button className="bg-red-600 rounded-md m-2 p-2 text-white font-bold hover:bg-red-700"onClick={() => handleSignout()}>Log Out</button>}
+      {user && (
+        <div>
+          <button
+            className="bg-purple-700 px-4 py-2 mx-4 my-2 rounded-lg text-white font-bold"
+            onClick={() => handleGptClick()}
+          >
+            {showGpt ? "Home" : "searchGpt"}
+          </button>
+          <button
+            className="bg-red-600 rounded-md m-2 p-2 text-white font-bold hover:bg-red-700"
+            onClick={() => handleSignout()}
+          >
+            Log Out
+          </button>
+        </div>
+      )}
     </div>
   );
 };
