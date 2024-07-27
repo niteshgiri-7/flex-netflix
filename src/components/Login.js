@@ -41,7 +41,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, eml, pw)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
           setErrMsg(error.message);
