@@ -20,20 +20,14 @@ export const MOVIE_TRAILER_URL = "https://api.themoviedb.org/3/movie/";
 
 export const TMDB_IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 
-export const NOWPLAYING_API_OPTIONS = {
+export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
     Authorization: process.env.REACT_APP_TMDB_KEY,
   },
 };
-export const POPULAR_API_OPTIONS = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmJhMTEyMmU1NWQ2ZGI3ZjI5ZDM5YThiNWM3MDNmOSIsIm5iZiI6MTcyMjA2NTI1NC4wMzYzMDMsInN1YiI6IjY2OWU4ZTBjYWVlNjdjYmEzN2RkMmI1ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dZMOCHlSRzJGEtl-2_SW3ilY-mA1oJGQOJ0eY5fNOBo'
-  }
-};
+
 
 export const TRRAILER_API_OPTIONS = {
   method: "GET",
