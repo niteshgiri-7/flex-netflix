@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { MOVIE_TRAILER_URL } from "../utils/constants";
-import { TRAILER_FETCH_OPTIONS } from "../utils/constants";
+import { MOVIE_TRAILER_URL, TRRAILER_API_OPTIONS } from "../utils/constants";
 import { addTrailerVideo } from "../utils/moviesSlice";
 import { useDispatch } from "react-redux";
 
@@ -12,7 +11,7 @@ const useFetchTrailer = () => {
   const fetchMovieVideo = async () => {
     const response = await fetch(
       MOVIE_TRAILER_URL + "/1022789/videos",
-      TRAILER_FETCH_OPTIONS
+      TRRAILER_API_OPTIONS
     );
     const json = await response.json();
     const filteredVideos = json.results.filter(
