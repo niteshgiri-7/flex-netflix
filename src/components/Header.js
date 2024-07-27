@@ -45,10 +45,18 @@ const Header = () => {
     dispatch(toggleShowGpt());
   };
   return (
-    <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-10 w-full  flex justify-between">
+    <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-30 w-full  flex justify-between">
       <img className="w-44 z-50" src={LOGO_URL} alt="logo" />
       {user && (
         <div>
+          {
+            showGpt && (
+             <select className="bg-gray-700 px-4 py-2 m-2 rounded-lg text-white font-normal">
+              <option >English</option>
+              <option>English</option>
+             </select> 
+            )
+          }
           <button
             className="bg-purple-700 px-4 py-2 mx-4 my-2 rounded-lg text-white font-bold"
             onClick={() => handleGptClick()}
