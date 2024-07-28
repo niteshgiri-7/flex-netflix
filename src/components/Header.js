@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { addUser, removeUser } from "../utils/userSlice";
-import { toggleShowGpt } from "../utils/gptSlice";
+import { addUser, removeUser } from "../utils/Slices/userSlice";
+import { toggleShowGpt } from "../utils/Slices/gptSlice";
 import { supported_languages } from "../utils/constants";
-import { chooseLanguage } from "../utils/langConfSlice";
+import { chooseLanguage } from "../utils/Slices/langConfSlice";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const showGpt = useSelector((store) => store.gpt.showGpt);

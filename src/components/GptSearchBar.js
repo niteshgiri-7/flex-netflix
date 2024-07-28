@@ -2,26 +2,14 @@ import React, { useRef } from "react";
 import { HOME_IMG_URL } from "../utils/constants";
 import lang from "../utils/langData";
 import { useSelector } from "react-redux";
-import model from "../utils/ai";
+import HandleSearch  from "../utils/handleGPTsearch";
+
 const GptSearchBar = () => {
   const searchText = useRef(null);
   const langOpt = useSelector((store) => store.lang);
   const langKey = langOpt.chosenLang;
-  const HandleSearch = () => {
-   const  searchedValue = searchText.current.value;
-    const prompt = "act as a movie recommendation system and suggest me just the name of 5 movies with the description given as :"+searchedValue+"response should be like for example. Movie1,Movie2,Movie3,Movie4,Movie5,note that you don't need to give description of movies, you must give only the names";
-   getMovieRecommendation(prompt);
-  };
-  async function getMovieRecommendation(prompt) {
-    
-  
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    console.log(text);
-  }
-  
-  
+
+
   return (
     <>
       <img
@@ -40,7 +28,7 @@ const GptSearchBar = () => {
             ></input>
             <button
               className="px-6 py-4 bg-red-700 rounded-lg text-white font-bold"
-              onClick={() => HandleSearch()}
+              onClick={() => HandleSearch(searchText)}
             >
               {lang[langKey].search}
             </button>

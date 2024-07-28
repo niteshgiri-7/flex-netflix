@@ -17,6 +17,10 @@ export const UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming";
 
 export const MOVIE_TRAILER_URL = "https://api.themoviedb.org/3/movie/";
 
+export const MOVIE_SEARCH_URL_START =
+  "https://api.themoviedb.org/3/search/movie?query=";
+export const MOVIE_SEARCH_URL_END = "&include_adult=false&language=en-US&page=1";
+
 export const TMDB_IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 
 export const API_OPTIONS = {
