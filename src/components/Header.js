@@ -8,7 +8,8 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleShowGpt } from "../utils/gptSlice";
-
+import { supported_languages } from "../utils/constants";
+import { chooseLanguage } from "../utils/langConfSlice";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const showGpt = useSelector((store) => store.gpt.showGpt);
@@ -43,20 +44,23 @@ const Header = () => {
 
   const handleGptClick = () => {
     dispatch(toggleShowGpt());
+    console.log(supported_languages);
   };
+  const handleOptLangChoice = (e)=>{
+    dispatch(chooseLanguage(e.target.value))
+  }
   return (
     <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-30 w-full  flex justify-between">
       <img className="w-44 z-50" src={LOGO_URL} alt="logo" />
       {user && (
         <div>
-          {
-            showGpt && (
-             <select className="bg-gray-700 px-4 py-2 m-2 rounded-lg text-white font-normal">
-              <option >English</option>
-              <option>English</option>
-             </select> 
-            )
-          }
+          {showGpt && (
+            <select className="bg-gray-700 px-4 py-2 m-2 rounded-lg text-white font-normal" onChange={(e)=>handleOptLangChoice(e)}>
+            {supported_languages.map((sprt_lan)=>
+              <option key={sprt_lan.identifier} value={sprt_lan.identifier}>{sprt_lan.name}</option>
+            )}
+            </select>
+          )}
           <button
             className="bg-purple-700 px-4 py-2 mx-4 my-2 rounded-lg text-white font-bold"
             onClick={() => handleGptClick()}

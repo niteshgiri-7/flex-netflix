@@ -35,7 +35,7 @@ export const TRRAILER_API_OPTIONS = {
   },
 };
 
-export const supported_language = [
+export const supported_languages = [
   {
     identifier: "en",
     name: "English",
