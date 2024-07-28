@@ -44,7 +44,6 @@ const Header = () => {
 
   const handleGptClick = () => {
     dispatch(toggleShowGpt());
-    console.log(supported_languages);
   };
   const handleOptLangChoice = (e)=>{
     dispatch(chooseLanguage(e.target.value))
