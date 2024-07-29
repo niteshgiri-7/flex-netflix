@@ -24,6 +24,7 @@ const Header = () => {
         navigate("/browse");
       } else {
         dispatch(removeUser());
+        dispatch(toggleShowGpt());
         navigate("/");
       }
     });
@@ -34,7 +35,9 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
-        dispatch(toggleShowGpt());
+        if(showGpt){
+          dispatch((toggleShowGpt()));
+        }
         navigate("/");
       })
       .catch(() => {
@@ -45,19 +48,24 @@ const Header = () => {
   const handleGptClick = () => {
     dispatch(toggleShowGpt());
   };
-  const handleOptLangChoice = (e)=>{
-    dispatch(chooseLanguage(e.target.value))
-  }
+  const handleOptLangChoice = (e) => {
+    dispatch(chooseLanguage(e.target.value));
+  };
   return (
     <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-30 w-full  flex justify-between">
       <img className="w-44 z-50" src={LOGO_URL} alt="logo" />
       {user && (
         <div>
           {showGpt && (
-            <select className="bg-gray-700 px-4 py-2 m-2 rounded-lg text-white font-normal" onChange={(e)=>handleOptLangChoice(e)}>
-            {supported_languages.map((sprt_lan)=>
-              <option key={sprt_lan.identifier} value={sprt_lan.identifier}>{sprt_lan.name}</option>
-            )}
+            <select
+              className="bg-gray-700 px-4 py-2 m-2 rounded-lg text-white font-normal"
+              onChange={(e) => handleOptLangChoice(e)}
+            >
+              {supported_languages.map((sprt_lan) => (
+                <option key={sprt_lan.identifier} value={sprt_lan.identifier}>
+                  {sprt_lan.name}
+                </option>
+              ))}
             </select>
           )}
           <button

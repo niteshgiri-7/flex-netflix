@@ -71,7 +71,7 @@ const Login = () => {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="p-12 bg-black rounded-lg bg-opacity-80  w-3/12 mx-auto my-48 absolute right-0 left-0 "
+        className="p-12 bg-black bg-opacity-80 rounded-lg  w-3/12 mx-auto my-48 absolute right-0 left-0 "
       >
         <div className="font-bold text-white">
           <h1 className="text-4xl py-4 my-2">{btn}</h1>
