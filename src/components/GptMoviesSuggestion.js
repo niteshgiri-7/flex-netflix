@@ -7,15 +7,27 @@ const GptMoviesSuggestion = () => {
     console.log(gptMoviesNames);
     console.log("\n tmdbMovies", gptMovies);
   }
+  if(!gptMoviesNames || gptMovies.length===0 ) return null;
   return (
-    <div className=" w-full h-full overflow-y-auto fixed  flex justify-center items-end" >
- <div className="w-screen h-2/4 bg-black bg-opacity-80 p-4 sticky">
- {gptMoviesNames.map((gptMoviesName,index)=> <MovieList title={gptMoviesName} movies={gptMovies[index]}/>)}
-     
+    <div className="bg-black bg-opacity-90 mt-8 rounded-tl-lg rounded-tr-lg">
+ <div className="text-white p-4">
+    <div>
+      {gptMoviesNames.map((gptMoviesName, index) => (
+        <MovieList
+          key={gptMoviesName}
+          title={gptMoviesName}
+          movies={gptMovies[index]}
+        />
+      ))}
+    </div>
     </div>
     </div>
    
-  );
+  
+
+)
 };
+
+
 
 export default GptMoviesSuggestion;

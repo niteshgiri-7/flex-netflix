@@ -10,7 +10,7 @@ const useFetchTrailer = () => {
   }, []);
   const fetchMovieVideo = async () => {
     const response = await fetch(
-      MOVIE_TRAILER_URL + "/1022789/videos",
+      MOVIE_TRAILER_URL + "/573435/videos",
       TRRAILER_API_OPTIONS
     );
     const json = await response.json();

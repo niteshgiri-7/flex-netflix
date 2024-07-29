@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { HOME_IMG_URL } from "../utils/constants";
 import lang from "../utils/langData";
 import { useDispatch, useSelector } from "react-redux";
 import { callGPTsearchHook } from "../utils/Slices/gptSlice";
@@ -19,23 +18,25 @@ const GptSearchBar = () => {
     <>
       
 
-      <div className="flex justify-center z-10 relative">
-        <div className="w-6/12  h-2/4 fixed  flex justify-center  ">
-          <div className="w-[70%] h-[20%]  bg-black bg-opacity-70 rounded-md my-[10%]">
-            <input
-              className="m-4 p-4 w-[80%] rounded-md font-bold placeholder-gray-600"
-              placeholder={lang[langKey].gptSearchPlaceHolder}
-              ref={searchText}
-            ></input>
-            <button
-              className="px-6 py-4 bg-red-700 rounded-lg text-white font-bold"
-              onClick={()=>activateButton()}
-            >
-              {lang[langKey].search}
-            </button>
-          </div>
-        </div>
-      </div>
+      <div className="pt-[30%] md:pt-[5%] flex justify-center">
+      <form
+        className="w-full md:w-1/2 bg-black bg-opacity-70 rounded-lg grid grid-cols-9"
+        onSubmit={(e) => e.preventDefault()}
+      >
+        <input
+          ref={searchText}
+          type="text"
+          className=" p-4 m-4 rounded-md col-span-7 font-bold text-gray-700 text-lg"
+          placeholder={lang[langKey].gptSearchPlaceHolder}
+        />
+        <button
+          className="col-span-2 m-4 py-4 px-4 bg-red-700 text-white rounded-lg font-bold text-lg"
+          onClick={()=>{activateButton()}}
+        >
+          {lang[langKey].search}
+        </button>
+      </form>
+    </div>
     </>
   );
 };
