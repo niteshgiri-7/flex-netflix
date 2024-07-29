@@ -69,7 +69,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="bg-purple-700 px-4 py-2 mx-4 my-2 rounded-lg text-white font-bold"
+            className="bg-purple-700 px-4 py-2 mx-4 my-2 rounded-lg text-white font-bold hover:bg-opacity-70"
             onClick={() => handleGptClick()}
           >
             {showGpt ? "Home" : "searchGpt"}
