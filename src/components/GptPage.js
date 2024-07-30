@@ -2,6 +2,7 @@ import React from "react";
 import GptSearchBar from "./GptSearchBar";
 import GptMoviesSuggestion from "./GptMoviesSuggestion";
 import { HOME_IMG_URL } from "../utils/constants";
+import Shimmer from "./Shimmer";
 const GptPage = () => {
 
   return (

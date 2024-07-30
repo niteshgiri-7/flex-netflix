@@ -7,10 +7,7 @@ const GptMoviesSuggestion = () => {
   const { gptMovies, gptMoviesNames,showShimmer } = useSelector(
     (store) => store.gpt
   );
-  if (gptMovies) {
-    console.log(gptMoviesNames);
-    console.log("\n tmdbMovies", gptMovies);
-  }
+
 
   if(showShimmer && gptMovies.length===0 ) return <Shimmer/>
   if ((!gptMoviesNames || gptMovies.length === 0)) return null;

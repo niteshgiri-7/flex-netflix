@@ -12,7 +12,6 @@ const useHandleSearch = (searchText) => {
   // const initialRender = useRef(true);
   const fetchMovie = useSelector((store) => store.gpt.fetchData);
   useEffect(() => {
-    console.log("HandleSearch being called");
     HandleSearch(searchText);
   }, [fetchMovie]); //when search button is clicked, fetchData toggles to run this UseEffect
   const HandleSearch = async (searchText) => {
@@ -25,7 +24,6 @@ const useHandleSearch = (searchText) => {
 
       const PromiseArray = moviesName.map((movies) => searchTmdb(movies));
       const resultMovie = await Promise.all(PromiseArray);
-      console.log(resultMovie);
 
       dispatch(
         addGptmoviesResult({
