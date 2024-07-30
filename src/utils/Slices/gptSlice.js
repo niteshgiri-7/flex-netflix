@@ -4,6 +4,7 @@ const gptSlice = createSlice({
   name: "gpt",
   initialState: {
     showGpt: false,
+    showShimmer:false,
     fetchData:false,
     gptMovies: null,
     gptMoviesNames:null,
@@ -19,9 +20,12 @@ const gptSlice = createSlice({
     },
     callGPTsearchHook:(state)=>{
       state.fetchData=!state.fetchData; //to activate the searchButton(to run useHanldeGPTsearch)
+    },
+    toggleShowShimmer:(state)=>{
+      state.showShimmer=!state.showShimmer;
     }
   },
 });
 
-export const { toggleShowGpt,addGptmoviesResult,callGPTsearchHook } = gptSlice.actions;
+export const { toggleShowGpt,addGptmoviesResult,callGPTsearchHook,toggleShowShimmer} = gptSlice.actions;
 export default gptSlice.reducer;

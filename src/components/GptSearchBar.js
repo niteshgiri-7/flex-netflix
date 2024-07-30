@@ -1,16 +1,19 @@
 import React, { useRef } from "react";
 import lang from "../utils/langData";
 import { useDispatch, useSelector } from "react-redux";
-import { callGPTsearchHook } from "../utils/Slices/gptSlice";
+import { callGPTsearchHook,toggleShowShimmer } from "../utils/Slices/gptSlice";
 import useHandleSearch from "../Hooks/useHandleGPTsearch";
 
 const GptSearchBar = () => {
+
  const dispatch = useDispatch();
+
 
   const searchText = useRef(null);
   const langOpt = useSelector((store) => store.lang);
   const langKey = langOpt.chosenLang;
   const activateButton = ()=>{
+    dispatch(toggleShowShimmer());
     dispatch(callGPTsearchHook());
   }
   useHandleSearch(searchText);//to obtain the ai suggestion,on basis of result search in tmdb and get the result(add in slice)
