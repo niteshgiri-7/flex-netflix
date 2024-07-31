@@ -7,9 +7,9 @@ const VideoBackground = () => {
   useFetchTrailer();
 
   return (
-    <div className="bg-gradient-to-tr from-black max-w-[1904px]">
+    <div className="bg-gradient-to-tr from-black max-w-full">
       <iframe
-        className=" w-[1904px] aspect-video pointer-events-none"
+        className=" w-full aspect-video pointer-events-none"
         src={YOUTUBE_URL + trailerVideo?.key + "?&autoplay=1&mute=1&loop=1&showinfo=0&playlist=" + trailerVideo?.key}
         title="YouTube video player"
         frameBorder="0" 
