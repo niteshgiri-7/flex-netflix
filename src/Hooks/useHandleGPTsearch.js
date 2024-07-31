@@ -3,9 +3,9 @@ import getMovieRecommendation from "../utils/getMovieRecommendation";
 import searchTmdb from "../utils/searchTMDB";
 import {
   addGptmoviesResult,
-  toggleShowShimmer,
+  
 } from "../utils/Slices/gptSlice";
-import { useEffect, useRef } from "react";
+import { useEffect} from "react";
 
 const useHandleSearch = (searchText) => {
   const dispatch = useDispatch();
