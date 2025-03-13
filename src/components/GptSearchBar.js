@@ -16,28 +16,28 @@ const GptSearchBar = () => {
     dispatch(toggleShowShimmer());
     dispatch(callGPTsearchHook());
   }
-  useHandleSearch(searchText);//to obtain the ai suggestion,on basis of result search in tmdb and get the result(add in slice)
+  const {isLoading}=useHandleSearch(searchText);//to obtain the ai suggestion,on basis of result search in tmdb and get the result(add in slice)
   return (
     <>
       
 
-      <div className="pt-[30%] md:pt-[5%] flex justify-center">
+      <div className="pt-[30%] md:pt-[15%] flex justify-center">
       <form
-        className="w-full md:w-1/2 bg-black bg-opacity-70 rounded-lg grid grid-cols-9"
+        className="w-full md:w-2/3 md:p-4 bg-black bg-opacity-70 rounded-lg flex"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="search"
-          className=" p-4 m-4 rounded-md col-span-7 font-bold text-gray-700 text-lg"
+          className=" p-4 m-4 rounded-md col-span-7 font-bold text-gray-700  text-sm md:text-lg w-[80%]"
           placeholder={lang[langKey].gptSearchPlaceHolder}
           
         />
         <button
-          className="col-span-2 m-4 py-4 px-4 bg-red-600 text-white rounded-lg font-bold text-lg hover:bg-opacity-80"
+          className="w-[20%] m-4 bg-red-600 text-white rounded-lg font-bold text-lg hover:bg-opacity-80"
           onClick={()=>{activateButton()}}
         >
-          {lang[langKey].search}
+          { isLoading?"Searching":lang[langKey].search}
         </button>
       </form>
     </div>

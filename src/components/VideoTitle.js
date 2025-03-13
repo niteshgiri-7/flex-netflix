@@ -1,11 +1,12 @@
 import React from "react";
 
 const VideoTitle = ({title,overview}) => {
-  return <div className="h-screen pt-[20%] px-24 absolute text-white bg-gradient-to-r from-black no-scrollbar">
+  return (
+  <div className="absolute top-[15rem] text-white w-[90vw] left-1/2 -translate-x-1/2 p-3 rounded-lg bg-black/60 z-40 md:w-1/2 xl:w-1/3 md:left-1/2 md:-translate-x-full xl:left-1/3 xl:top-1/2">
     <h1 className="text-6xl font-bold overflow-hidden">
     {title}
     </h1>
-   <p className="py-6 text-lg w-1/4 font-bold">
+   <p className="py-6 text-lg  font-bold">
    {overview}
     </p>  
       <button className="bg-white text-black w-[100px] h-auto p-4  rounded-lg hover:bg-opacity-80">
@@ -15,7 +16,8 @@ const VideoTitle = ({title,overview}) => {
         More Info
       </button>
         
-  </div>;
+  </div>
+  );
 };
 
 export default VideoTitle;

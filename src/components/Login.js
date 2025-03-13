@@ -10,7 +10,8 @@ import {
 } from "firebase/auth";
 
 const Login = () => {
-  const [btn, setBtn] = useState("Sign In");
+  const [btnName, setBtnName] = useState("Sign In");
+  const [isLoading,setIsLoading]=useState(false);
   const [signInForm, setsignInForm] = useState(true);
   const [errMsg, setErrMsg] = useState(null);
 
@@ -25,44 +26,48 @@ const Login = () => {
     const formMsg = formValidate(eml, pw, nm, signInForm);
     setErrMsg(formMsg);
     if (formMsg !== null) return;
-
+  
+    setIsLoading(true);
     if (!signInForm) {
       createUserWithEmailAndPassword(auth, eml, pw)
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: nm,
-          }).then(() => {});
+          }).then(() => setIsLoading(false));
         })
         .catch((error) => {
+          setIsLoading(false)
           setErrMsg(error.message);
         });
     } else {
       signInWithEmailAndPassword(auth, eml, pw)
         .then((userCredential) => {
           const user = userCredential.user;
+          setIsLoading(false);
         })
         .catch((error) => {
           setErrMsg(error.message);
+          setIsLoading(false)
         });
     }
   };
   const handleSignUPLabel = () => {
-    return btn === "Sign In"
+    return btnName === "Sign In"
       ? (() => {
-          setBtn("Sign Up");
+          setBtnName("Sign Up");
           setsignInForm(false);
           return null;
         })()
       :(() => {
-          setBtn("Sign In");
+          setBtnName("Sign In");
           setsignInForm(true);
           return null;
         })();
   };
 
   return (
-    <div className="">
+    <div>
       <Header />
       <div className="">
         <img className="w-full h-full absolute"src={HOME_IMG_URL} alt="homeImage" />
@@ -71,10 +76,10 @@ const Login = () => {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="p-12 bg-black bg-opacity-80 rounded-lg  w-3/12 mx-auto my-48 absolute right-0 left-0 "
+        className="p-12 bg-black bg-opacity-80 rounded-lg absolute max-w-sm md:max-w-md max-h-fit inset-0 m-auto"
       >
         <div className="font-bold text-white">
-          <h1 className="text-4xl py-4 my-2">{btn}</h1>
+          <h1 className="text-4xl py-4 my-2">{btnName}</h1>
           <input
             className="w-full p-4 my-2 bg-gray-700 rounded-sm focus:bg-gray-700"
             type="text"
@@ -99,8 +104,9 @@ const Login = () => {
           <button
             className="w-full py-4 my-2 rounded-md bg-red-600 cursor-pointer"
             onClick={() => handleMainBtn()}
+            disabled={isLoading}
           >
-            {btn}
+            { isLoading ? "Loading..."  : btnName }
           </button>
           {signInForm && (
             <p className="py-4">

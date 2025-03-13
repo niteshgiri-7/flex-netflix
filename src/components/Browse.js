@@ -15,7 +15,7 @@ const Browse = () => {
   useTopRatedMovies();
   useUpComingMovies();
   return (
-    <div className="">
+    <div className="overflow-x-hidden overflow-y-auto h-screen">
       <Header />
      {
       showGpt?<GptPage/>:

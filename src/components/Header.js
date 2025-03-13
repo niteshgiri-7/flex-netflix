@@ -52,8 +52,8 @@ const Header = () => {
     dispatch(chooseLanguage(e.target.value));
   };
   return (
-    <div className="px-8 py-2 bg-gradient-to-b from-black absolute z-30 w-full  flex justify-between">
-      <img className="w-44 z-50" src={LOGO_URL} alt="logo" />
+    <div className="px-4 py-2 bg-gradient-to-b from-black absolute z-30 w-full  flex justify-between">
+      <img className="h-24 w-24" src={LOGO_URL} alt="logo" />
       {user && (
         <div>
           {showGpt && (
@@ -69,7 +69,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="bg-purple-700 px-4 py-2 mx-4 my-2 rounded-lg text-white font-bold hover:bg-opacity-70"
+            className="bg-purple-700 px-4 py-2  rounded-lg text-white font-bold hover:bg-opacity-70"
             onClick={() => handleGptClick()}
           >
             {showGpt ? "Home" : "searchGpt"}
